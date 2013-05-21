@@ -27,27 +27,34 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f09000b;
-        public static final int cancel=0x7f09000d;
-        public static final int create_note=0x7f09000f;
-        public static final int menu_view=0x7f09000e;
+        public static final int LinearLayout1=0x7f09000d;
+        public static final int action_settings=0x7f09000f;
+        public static final int cancel=0x7f090011;
+        public static final int create_note=0x7f090013;
+        public static final int delete_note=0x7f090015;
+        public static final int edit_note=0x7f090014;
+        public static final int menu_view=0x7f090012;
         public static final int noteAddress=0x7f090004;
+        public static final int noteAddressLbl=0x7f09000e;
         public static final int noteDate=0x7f090009;
+        public static final int noteDateLbl=0x7f090003;
         public static final int noteDescription=0x7f090006;
+        public static final int noteDescriptionLbl=0x7f090005;
         public static final int noteTitle=0x7f090002;
+        public static final int noteTitleLbl=0x7f090001;
         public static final int noteVisitAgain=0x7f090007;
+        public static final int noteVisitLbl=0x7f090008;
         public static final int note_title=0x7f090000;
-        public static final int save_note=0x7f09000c;
-        public static final int textView1=0x7f090001;
-        public static final int textView2=0x7f090003;
-        public static final int textView3=0x7f090005;
-        public static final int textView4=0x7f090008;
+        public static final int pager=0x7f09000b;
+        public static final int save_note=0x7f090010;
+        public static final int section_label=0x7f09000c;
         public static final int view_container=0x7f09000a;
     }
     public static final class layout {
         public static final int action_view=0x7f030000;
         public static final int activity_create_note=0x7f030001;
         public static final int activity_main=0x7f030002;
+        public static final int activity_show_note=0x7f030003;
         /** 
     Layout alias to replace the single-pane version of the layout with a
     two-pane version on Large screens.
@@ -70,13 +77,17 @@ public final class R {
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
     
          */
-        public static final int fragment_notes=0x7f030005;
-        public static final int fragment_notes_grid=0x7f030003;
-        public static final int fragment_notes_list=0x7f030004;
+        public static final int fragment_notes=0x7f030009;
+        public static final int fragment_notes_grid=0x7f030004;
+        public static final int fragment_notes_list=0x7f030005;
+        public static final int fragment_show_note_dummy=0x7f030006;
+        public static final int fragment_show_note_info=0x7f030007;
+        public static final int fragment_show_note_map=0x7f030008;
     }
     public static final class menu {
         public static final int create_note=0x7f080000;
         public static final int main=0x7f080001;
+        public static final int show_note=0x7f080002;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -85,14 +96,23 @@ public final class R {
         public static final int cancel=0x7f050009;
         public static final int create_note=0x7f050006;
         public static final int dont_visit=0x7f050005;
+        public static final int edit_note=0x7f050014;
+        public static final int hello_blank_fragment=0x7f050013;
         public static final int hello_world=0x7f050002;
         public static final int noteAddress=0x7f05000b;
         public static final int noteDate=0x7f05000e;
         public static final int noteDescription=0x7f05000c;
+        public static final int noteInfoTab=0x7f050016;
+        public static final int noteMapTab=0x7f050017;
         public static final int noteTitle=0x7f05000a;
         public static final int noteVisitAgain=0x7f05000d;
+        public static final int note_delete=0x7f050015;
         public static final int save=0x7f050008;
         public static final int title_activity_create_note=0x7f050007;
+        public static final int title_activity_show_note=0x7f05000f;
+        public static final int title_section1=0x7f050010;
+        public static final int title_section2=0x7f050011;
+        public static final int title_section3=0x7f050012;
         public static final int visit_again=0x7f050004;
     }
     public static final class style {

@@ -11,7 +11,7 @@
     tools:context=".CreateNoteActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/noteTitleLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/noteTitle" />
@@ -27,7 +27,7 @@
     </EditText>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/noteDateLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/noteAddress" />
@@ -40,7 +40,7 @@
         android:inputType="textPostalAddress" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/noteDescriptionLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/noteDescription" />
@@ -59,7 +59,7 @@
         android:text="@string/noteVisitAgain" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/noteVisitLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/noteDate" />

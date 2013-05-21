@@ -75,11 +75,16 @@ public class NotesFragment extends Fragment implements
 			mParam1 = getArguments().getString(ARG_PARAM1);
 			mParam2 = getArguments().getString(ARG_PARAM2);
 		}
-
-		// TODO: Change Adapter to display your content
 		mAdapter = new ArrayAdapter<Object>(getActivity(),
 				android.R.layout.simple_list_item_1, android.R.id.text1, Dao
 						.getInstance().getAllNotes().toArray());
+	}
+	
+	public void refreshList(){
+		mAdapter = new ArrayAdapter<Object>(getActivity(),
+				android.R.layout.simple_list_item_1, android.R.id.text1, Dao
+						.getInstance().getAllNotes().toArray());
+		mListView.setAdapter(mAdapter);
 	}
 
 	@Override
@@ -117,11 +122,13 @@ public class NotesFragment extends Fragment implements
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
+		Note n = Dao.getInstance().getAllNotes().get(position);
 		if (null != mListener) {
 			// Notify the active callbacks interface (the activity, if the
 			// fragment is attached to one) that an item has been selected.
 			mListener
-					.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+					.onFragmentInteraction(n.getId()+"");
+			mListener.onNoteSelected(n);
 		}
 	}
 
@@ -150,6 +157,7 @@ public class NotesFragment extends Fragment implements
 	public interface OnFragmentInteractionListener {
 		// TODO: Update argument type and name
 		public void onFragmentInteraction(String id);
+		public void onNoteSelected(Note n);
 	}
 
 }

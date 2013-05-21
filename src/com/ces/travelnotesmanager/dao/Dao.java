@@ -33,6 +33,24 @@ public class Dao {
 		notes.remove(n);
 	}
 	
+	public Note findNoteById(int id){
+		for(Note n : notes){
+			if(n.getId() == id)
+				return n;
+		}
+		return null;
+	}
+	
+	public Note removeNoteById(int id){
+		for(Note n : notes){
+			if(n.getId() == id){
+				removeNote(n);
+				return n;
+			}
+		}
+		return null;
+	}
+	
 	public ArrayList<Note> getAllNotes(){
 		return new ArrayList<Note>(notes);
 	}

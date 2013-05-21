@@ -3,6 +3,8 @@ package com.ces.travelnotesmanager;
 import java.text.ParseException;
 
 import com.ces.travelnotesmanager.NotesFragment.OnFragmentInteractionListener;
+import com.ces.travelnotesmanager.dao.Dao;
+import com.ces.travelnotesmanager.model.Note;
 import com.ces.travelnotesmanager.service.Service;
 
 import android.os.Bundle;
@@ -12,17 +14,19 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 
 public class MainActivity extends Activity implements
 		OnFragmentInteractionListener {
 
+	NotesFragment nFrag;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Service.getInstance();
 		if (findViewById(R.id.view_container) != null) {
-			NotesFragment nFrag = new NotesFragment();
+			nFrag = new NotesFragment();
 			FragmentManager fm = getFragmentManager();
 			FragmentTransaction ft = fm.beginTransaction();
 			ft.add(R.id.view_container, nFrag);
@@ -41,20 +45,35 @@ public class MainActivity extends Activity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.create_note:
-			// app icon in action bar clicked; go home
 			Intent intent = new Intent(this, CreateNoteActivity.class);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			startActivity(intent);
+			startActivityForResult(intent, 1);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		refresh();
+	}
 
 	@Override
 	public void onFragmentInteraction(String id) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
+	public void refresh(){
+		nFrag.refreshList();
+	}
+
+	@Override
+	public void onNoteSelected(Note n) {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent(this, ShowNoteActivity.class);
+		intent.putExtra("note", n);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivityForResult(intent, 1);
+	}
 }

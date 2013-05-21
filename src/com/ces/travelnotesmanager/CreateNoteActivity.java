@@ -1,6 +1,12 @@
 package com.ces.travelnotesmanager;
 
+import java.text.ParseException;
+import java.util.Date;
+import java.util.Random;
+
+import com.ces.travelnotesmanager.dao.Dao;
 import com.ces.travelnotesmanager.model.Note;
+import com.ces.travelnotesmanager.service.Service;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -14,18 +20,39 @@ public class CreateNoteActivity extends Activity {
 	private Note note;
 	private EditText title, address, description, date;
 	private CheckBox visit;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_note);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		note = null;
+		
+		if(getIntent().getExtras() != null && getIntent().getExtras().containsKey("note")){
+			note = (Note) getIntent().getExtras().getSerializable("note");
+			note = Dao.getInstance().findNoteById(note.getId());
+		}
+		else{
+			note = null;
+		}
+		
 		title = (EditText) findViewById(R.id.noteTitle);
 		address = (EditText) findViewById(R.id.noteAddress);
 		description = (EditText) findViewById(R.id.noteDescription);
 		date = (EditText) findViewById(R.id.noteDate);
 		visit = (CheckBox) findViewById(R.id.noteVisitAgain);
+		
+		fillIn();
+	}
+	
+	private void fillIn(){
+		if(note != null){
+			title.setText(note.getTitle());
+			address.setText(note.getAddress());
+			description.setText(note.getDescription());
+			date.setText(Service.formatDate(note.getDate()));
+			visit.setChecked(note.isVisitAgain());
+		}
 	}
 
 	/**
@@ -50,7 +77,7 @@ public class CreateNoteActivity extends Activity {
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.save_note:
-			
+			save();
 			return true;
 		case R.id.cancel:
 			cancel();
@@ -61,10 +88,32 @@ public class CreateNoteActivity extends Activity {
 	}
 	
 	private void save(){
-		if(this.note == null){
+		
 			String title = this.title.getText().toString();
 			String address = this.address.getText().toString();
-		}
+			String description = this.description.getText().toString();
+			Date date = null;
+			try {
+				date = Service.convertDate(this.date.getText().toString());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			boolean visit = this.visit.isChecked();
+		
+			if(this.note == null){
+			Note n = new Note(new Random().nextInt(89000), title, address, description, date, visit);
+			Dao.getInstance().addNote(n);
+			}
+			else{
+				note.setTitle(title);
+				note.setAddress(address);
+				note.setDescription(description);
+				note.setDate(date);
+				note.setVisitAgain(visit);
+			}
+			this.setResult(RESULT_OK);
+			finish();
 	}
 	
 	private void cancel(){

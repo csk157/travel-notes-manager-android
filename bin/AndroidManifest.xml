@@ -31,6 +31,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ces.travelnotesmanager.MainActivity" />
         </activity>
+        <activity
+            android:name="com.ces.travelnotesmanager.ShowNoteActivity"
+            android:label="@string/title_activity_show_note"
+            android:parentActivityName="com.ces.travelnotesmanager.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.ces.travelnotesmanager.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

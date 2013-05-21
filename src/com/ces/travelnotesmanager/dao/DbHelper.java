@@ -8,9 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DbHelper extends SQLiteOpenHelper {
 	public static final String COLUMN_ID = "_id";
 
-	// public static final String COLUMN_COMMENT = "comment";
-
-	private static final String DATABASE_NAME = "shopping.db";
+	private static final String DATABASE_NAME = "travelnotesmanager.db";
 	private static final int DATABASE_VERSION = 1;
 
 	public DbHelper(Context context) {
@@ -21,11 +19,11 @@ public class DbHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL("create table products (_id integer primary key autoincrement,"
-				+ "name text not null,"
-				+ "unit text not null,"
-				+ "quantity integer not null,"
-				+ "price float not null,"
-				+ "shop text not null)");
+				+ "title text not null,"
+				+ "address text not null,"
+				+ "description integer not null,"
+				+ "date date not null,"
+				+ "visit_again text not null)");
 
 		db.execSQL("create table items (_id integer primary key autoincrement,"
 				+ "product_id long not null," + "amount integer not null)");

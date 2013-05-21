@@ -23,5 +23,14 @@
     <string name="noteDescription">Description</string>
     <string name="noteVisitAgain">Should visit again</string>
     <string name="noteDate">Date</string>
+    <string name="title_activity_show_note">Show Note Activity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit_note">Edit</string>
+    <string name="note_delete">Delete</string>
+    <string name="noteInfoTab">Information</string>
+    <string name="noteMapTab">Map</string>
 
 </resources>
