@@ -2,19 +2,19 @@ package com.ces.travelnotesmanager;
 
 import java.text.ParseException;
 
-import com.ces.travelnotesmanager.NotesFragment.OnFragmentInteractionListener;
-import com.ces.travelnotesmanager.dao.Dao;
-import com.ces.travelnotesmanager.model.Note;
-import com.ces.travelnotesmanager.service.Service;
-
-import android.os.Bundle;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+
+import com.ces.travelnotesmanager.NotesFragment.OnFragmentInteractionListener;
+import com.ces.travelnotesmanager.model.Note;
+import com.ces.travelnotesmanager.service.Service;
 
 public class MainActivity extends Activity implements
 		OnFragmentInteractionListener {
@@ -24,7 +24,23 @@ public class MainActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Service.getInstance();
+		SharedPreferences settings = getSharedPreferences("TravelNotesPrefs", 0);
+		
+		if (settings.getBoolean("FirstTime", true)) {
+			try {
+				Service.getInstance(this).createSomeObjects();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+
+		    settings.edit().putBoolean("FirstTime", false).commit();
+		    Log.d("Log", "First launch. Creating default objects");
+		}
+		else{
+			Log.d("Log", "Not a first launch.");
+		}
+		
+		
 		if (findViewById(R.id.view_container) != null) {
 			nFrag = new NotesFragment();
 			FragmentManager fm = getFragmentManager();

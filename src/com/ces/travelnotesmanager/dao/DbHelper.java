@@ -18,16 +18,12 @@ public class DbHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		db.execSQL("create table products (_id integer primary key autoincrement,"
+		db.execSQL("create table notes (_id integer primary key autoincrement,"
 				+ "title text not null,"
 				+ "address text not null,"
 				+ "description integer not null,"
 				+ "date date not null,"
-				+ "visit_again text not null)");
-
-		db.execSQL("create table items (_id integer primary key autoincrement,"
-				+ "product_id long not null," + "amount integer not null)");
-
+				+ "visit_again integer not null)");
 	}
 
 	@Override

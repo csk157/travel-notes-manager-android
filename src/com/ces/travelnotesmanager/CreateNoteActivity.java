@@ -20,33 +20,32 @@ public class CreateNoteActivity extends Activity {
 	private Note note;
 	private EditText title, address, description, date;
 	private CheckBox visit;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_note);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		
-		if(getIntent().getExtras() != null && getIntent().getExtras().containsKey("note")){
+
+		if (getIntent().getExtras() != null
+				&& getIntent().getExtras().containsKey("note")) {
 			note = (Note) getIntent().getExtras().getSerializable("note");
-			note = Dao.getInstance().findNoteById(note.getId());
-		}
-		else{
+		} else {
 			note = null;
 		}
-		
+
 		title = (EditText) findViewById(R.id.noteTitle);
 		address = (EditText) findViewById(R.id.noteAddress);
 		description = (EditText) findViewById(R.id.noteDescription);
 		date = (EditText) findViewById(R.id.noteDate);
 		visit = (CheckBox) findViewById(R.id.noteVisitAgain);
-		
+
 		fillIn();
 	}
-	
-	private void fillIn(){
-		if(note != null){
+
+	private void fillIn() {
+		if (note != null) {
 			title.setText(note.getTitle());
 			address.setText(note.getAddress());
 			description.setText(note.getDescription());
@@ -86,37 +85,38 @@ public class CreateNoteActivity extends Activity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
-	
-	private void save(){
-		
-			String title = this.title.getText().toString();
-			String address = this.address.getText().toString();
-			String description = this.description.getText().toString();
-			Date date = null;
-			try {
-				date = Service.convertDate(this.date.getText().toString());
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+
+	private void save() {
+
+		String title = this.title.getText().toString();
+		String address = this.address.getText().toString();
+		String description = this.description.getText().toString();
+		Date date = null;
+		try {
+			date = Service.convertDate(this.date.getText().toString());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		boolean visit = this.visit.isChecked();
+
+		if (this.note == null) {
+			Note n = new Note(title, address, description, date, visit);
+			Service.getInstance(this).addNote(n);
+		} else {
+			note.setTitle(title);
+			note.setAddress(address);
+			note.setDescription(description);
+			note.setDate(date);
+			note.setVisitAgain(visit);
 			
-			boolean visit = this.visit.isChecked();
-		
-			if(this.note == null){
-			Note n = new Note(new Random().nextInt(89000), title, address, description, date, visit);
-			Dao.getInstance().addNote(n);
-			}
-			else{
-				note.setTitle(title);
-				note.setAddress(address);
-				note.setDescription(description);
-				note.setDate(date);
-				note.setVisitAgain(visit);
-			}
-			this.setResult(RESULT_OK);
-			finish();
+			Service.getInstance(this).updateNote(note);
+		}
+		this.setResult(RESULT_OK);
+		finish();
 	}
-	
-	private void cancel(){
+
+	private void cancel() {
 		NavUtils.navigateUpFromSameTask(this);
 	}
 }

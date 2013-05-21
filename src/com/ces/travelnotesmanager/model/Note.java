@@ -3,21 +3,21 @@ package com.ces.travelnotesmanager.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import android.database.Cursor;
+
 public class Note implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private int id;
+	private long id;
 	private String title, address, description;
 	private Date date;
 	private boolean visitAgain;
 	
 	public Note(){
-		
 	}
 
-	public Note(int id, String title, String address, String description,
+	public Note(String title, String address, String description,
 			Date date, boolean visitAgain) {
 		super();
-		this.id = id;
 		this.title = title;
 		this.address = address;
 		this.description = description;
@@ -25,11 +25,11 @@ public class Note implements Serializable{
 		this.visitAgain = visitAgain;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

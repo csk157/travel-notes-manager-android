@@ -1,58 +1,50 @@
 package com.ces.travelnotesmanager.dao;
 
-import java.util.ArrayList;
-
-import com.ces.travelnotesmanager.model.Note;
-
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 public class Dao {
-//	private SQLiteDatabase database;
-//	private DbHelper dbHelper;
+	private SQLiteDatabase database;
+	private DbHelper dbHelper;
 
 	private static Dao instance;
-	private ArrayList<Note> notes;
-	
-	private Dao(/*Context c*/) {
-//		dbHelper = new DbHelper(c);
-//		database = dbHelper.getWritableDatabase();
-		notes = new ArrayList<Note>();
+
+	private Dao(Context c) {
+		dbHelper = new DbHelper(c);
+		database = dbHelper.getWritableDatabase();
 	}
 
-	public static Dao getInstance(/*Context c*/) {
+	public static Dao getInstance(Context c) {
 		if (instance == null)
-			instance = new Dao(/*c*/);
+			instance = new Dao(c);
 
 		return instance;
 	}
-	
-	public void addNote(Note n){
-		notes.add(n);
+
+	public Cursor getAllNotes() {
+		Cursor cursor = database.query("notes", null, null, null, null, null,
+				null);
+		return cursor;
 	}
-	
-	public void removeNote(Note n){
-		notes.remove(n);
+
+	public long addNote(ContentValues values) {
+		long id = database.insert("notes", null, values);
+		return id;
 	}
-	
-	public Note findNoteById(int id){
-		for(Note n : notes){
-			if(n.getId() == id)
-				return n;
-		}
-		return null;
+
+	public void removeNoteById(long id) {
+		database.delete("notes", "_id = ?", new String[] { id + "" });
 	}
-	
-	public Note removeNoteById(int id){
-		for(Note n : notes){
-			if(n.getId() == id){
-				removeNote(n);
-				return n;
-			}
-		}
-		return null;
+
+	public void updateNote(ContentValues values, long id) {
+		database.update("notes", values, "_id = ?", new String[] { id + "" });
 	}
-	
-	public ArrayList<Note> getAllNotes(){
-		return new ArrayList<Note>(notes);
+
+	public Cursor findNoteById(long id) {
+		Cursor cursor = database.query("notes", null, "_id = ?",
+				new String[] { id + "" }, null, null, null, 1 + "");
+		return cursor;
 	}
-	
 }

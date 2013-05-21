@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.ces.travelnotesmanager.dao.Dao;
 import com.ces.travelnotesmanager.dummy.DummyContent;
 import com.ces.travelnotesmanager.model.Note;
+import com.ces.travelnotesmanager.service.Service;
 
 /**
  * A fragment representing a list of Items.
@@ -76,14 +77,14 @@ public class NotesFragment extends Fragment implements
 			mParam2 = getArguments().getString(ARG_PARAM2);
 		}
 		mAdapter = new ArrayAdapter<Object>(getActivity(),
-				android.R.layout.simple_list_item_1, android.R.id.text1, Dao
-						.getInstance().getAllNotes().toArray());
+				android.R.layout.simple_list_item_1, android.R.id.text1, Service
+						.getInstance(getActivity()).getAllNotes().toArray());
 	}
 	
 	public void refreshList(){
 		mAdapter = new ArrayAdapter<Object>(getActivity(),
-				android.R.layout.simple_list_item_1, android.R.id.text1, Dao
-						.getInstance().getAllNotes().toArray());
+				android.R.layout.simple_list_item_1, android.R.id.text1, Service
+						.getInstance(getActivity()).getAllNotes().toArray());
 		mListView.setAdapter(mAdapter);
 	}
 
@@ -122,7 +123,7 @@ public class NotesFragment extends Fragment implements
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		Note n = Dao.getInstance().getAllNotes().get(position);
+		Note n = Service.getInstance(getActivity()).getAllNotes().get(position);
 		if (null != mListener) {
 			// Notify the active callbacks interface (the activity, if the
 			// fragment is attached to one) that an item has been selected.

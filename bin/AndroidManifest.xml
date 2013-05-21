@@ -39,6 +39,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ces.travelnotesmanager.MainActivity" />
         </activity>
+
+        <provider
+            android:name="com.ces.travelnotesmanager.TravelNotesContentProvider"
+            android:authorities="com.ces.travelnotesmanager"
+            android:enabled="true"
+            android:exported="true" >
+        </provider>
     </application>
 
 </manifest>

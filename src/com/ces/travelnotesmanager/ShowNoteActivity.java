@@ -101,7 +101,7 @@ public class ShowNoteActivity extends FragmentActivity implements
 	
 	@Override
 	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
-		note = Dao.getInstance().findNoteById(note.getId());
+		note = Service.getInstance(this).reloadNote(note);
 		info.updateNote(note);
 	}
 
@@ -125,7 +125,7 @@ public class ShowNoteActivity extends FragmentActivity implements
 			startActivityForResult(intent, 1);
 			return true;
 		case R.id.delete_note:
-			Dao.getInstance().removeNoteById(note.getId());
+			Service.getInstance(this).removeNote(note);
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
