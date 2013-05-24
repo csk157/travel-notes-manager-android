@@ -5,6 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * Class no longer used, only for reference. Use content provider instead.
+ * 
+ * @author ceslovas
+ * 
+ */
 public class Dao {
 	private SQLiteDatabase database;
 	private DbHelper dbHelper;

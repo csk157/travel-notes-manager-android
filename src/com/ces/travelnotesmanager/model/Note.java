@@ -3,12 +3,10 @@ package com.ces.travelnotesmanager.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import android.database.Cursor;
-
 public class Note implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private long id;
-	private String title, address, description;
+	private String title, address, description, image;
 	private Date date;
 	private boolean visitAgain;
 	
@@ -17,12 +15,18 @@ public class Note implements Serializable{
 
 	public Note(String title, String address, String description,
 			Date date, boolean visitAgain) {
-		super();
+		this();
 		this.title = title;
 		this.address = address;
 		this.description = description;
 		this.date = date;
 		this.visitAgain = visitAgain;
+	}
+	
+	public Note(String title, String address, String description,
+			Date date, boolean visitAgain, String image){
+		this(title, address, description, date, visitAgain);
+		this.image = image;
 	}
 
 	public long getId() {
@@ -76,5 +80,23 @@ public class Note implements Serializable{
 	@Override
 	public String toString(){
 		return this.title;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Note){
+			Note n = (Note) o;
+			return n.getId() == this.getId();
+		}
+		
+		return super.equals(o);
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 }

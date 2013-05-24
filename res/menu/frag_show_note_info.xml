@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/edit_note"
+        android:showAsAction="always"
+        android:title="@string/edit_note">
+    </item>
+    <item
+        android:id="@+id/delete_note"
+        android:showAsAction="always"
+        android:title="@string/note_delete">
+    </item>
+    <item android:id="@+id/share" android:title="@string/share" android:showAsAction="always" android:icon="@android:drawable/ic_menu_share"></item>
+
+</menu>

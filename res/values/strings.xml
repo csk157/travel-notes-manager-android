@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Travel Notes Manager</string>
+    <string name="app_name">Travel Diary</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="all_notes">All</string>
@@ -32,5 +32,12 @@
     <string name="note_delete">Delete</string>
     <string name="noteInfoTab">Information</string>
     <string name="noteMapTab">Map</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="visitAgain">Should visit again</string>
+    <string name="dontVisitAgain">Don\'t visit again</string>
+    <string name="share">Share</string>
+    <string name="selectImage">Select Image</string>
+    <string name="detachImage">Detach Image</string>
+    <string name="createNoteTitle">Create Note</string>
 
 </resources>

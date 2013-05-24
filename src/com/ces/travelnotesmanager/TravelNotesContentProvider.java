@@ -1,7 +1,5 @@
 package com.ces.travelnotesmanager;
 
-import com.ces.travelnotesmanager.dao.DbHelper;
-
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
@@ -9,7 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import android.util.Log;
+
+import com.ces.travelnotesmanager.dao.DbHelper;
 
 public class TravelNotesContentProvider extends ContentProvider {
 	private DbHelper database;
@@ -33,12 +32,12 @@ public class TravelNotesContentProvider extends ContentProvider {
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
 		int uriType = sURIMatcher.match(uri);
-		SQLiteDatabase sqlDB = database.getWritableDatabase();
+		SQLiteDatabase db = database.getWritableDatabase();
 		int rowsDeleted = 0;
 		switch (uriType) {
 		case NOTE:
 			String id = uri.getLastPathSegment();
-			rowsDeleted = sqlDB.delete("notes", "_id =" + id, null);
+			rowsDeleted = db.delete("notes", "_id =" + id, null);
 			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -49,19 +48,17 @@ public class TravelNotesContentProvider extends ContentProvider {
 
 	@Override
 	public String getType(Uri uri) {
-		// TODO: Implement this to handle requests for the MIME type of the data
-		// at the given URI.
 		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
 	@Override
 	public Uri insert(Uri uri, ContentValues values) {
 		int uriType = sURIMatcher.match(uri);
-		SQLiteDatabase sqlDB = database.getWritableDatabase();
+		SQLiteDatabase db = database.getWritableDatabase();
 		long id = 0;
 		switch (uriType) {
 		case NOTES:
-			id = sqlDB.insert("notes", null, values);
+			id = db.insert("notes", null, values);
 			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -98,8 +95,6 @@ public class TravelNotesContentProvider extends ContentProvider {
 		SQLiteDatabase db = database.getWritableDatabase();
 		Cursor cursor = queryBuilder.query(db, projection, selection,
 				selectionArgs, null, null, sortOrder);
-		// Make sure that potential listeners are getting notified
-		cursor.setNotificationUri(getContext().getContentResolver(), uri);
 
 		return cursor;
 	}
@@ -107,19 +102,17 @@ public class TravelNotesContentProvider extends ContentProvider {
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
 			String[] selectionArgs) {
-
 		int uriType = sURIMatcher.match(uri);
-		SQLiteDatabase sqlDB = database.getWritableDatabase();
+		SQLiteDatabase db = database.getWritableDatabase();
 		int rowsUpdated = 0;
 		switch (uriType) {
 		case NOTE:
 			String id = uri.getLastPathSegment();
-			rowsUpdated = sqlDB.update("notes", values, "_id =" + id, null);
+			rowsUpdated = db.update("notes", values, "_id =" + id, null);
 			break;
 		default:
 			throw new IllegalArgumentException("Unknown URI: " + uri);
 		}
-		getContext().getContentResolver().notifyChange(uri, null);
 		return rowsUpdated;
 	}
 }

@@ -1,46 +1,90 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ShowNoteInfoFragment" >
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:id="@+id/noteTitleLbl"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/showNoteLinearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/noteAddressLbl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        <!-- TODO: Update blank fragment layout -->
 
-    <TextView
-        android:id="@+id/noteDateLbl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingRight="10dp" >
 
-    <TextView
-        android:id="@+id/noteDescriptionLbl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                android:id="@+id/noteTitleLbl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:padding="5dp"
+                android:text="Rocky Marseille"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="35sp" />
 
-    <TextView
-        android:id="@+id/noteVisitLbl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            <ImageButton
+                android:id="@+id/showMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_weight="0.2"
+                android:adjustViewBounds="false"
+                android:background="#00000000"
+                android:baselineAlignBottom="false"
+                android:cropToPadding="false"
+                android:padding="3dp"
+                android:paddingBottom="0dp"
+                android:src="@drawable/map" />
+        </LinearLayout>
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" >
+
+            <TextView
+                android:id="@+id/noteAddressLbl"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:text="Marseille, France"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/noteDateLbl"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:gravity="right"
+                android:text="22/08/2010"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/noteDescriptionLbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:paddingBottom="30dp"
+            android:text="Nullam vel metus sapien. Morbi semper lobortis imperdiet. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam imperdiet laoreet velit, eget venenatis nisi mollis a. Nullam dapibus varius nulla sit amet interdum. Duis vitae erat enim, ac tempus eros. Nulla hendrerit venenatis augue sed ornare. Mauris vitae sapien quis enim tincidunt interdum. Vestibulum pulvinar felis at sapien "
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/noteVisitLbl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Should visit again"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+</ScrollView>
