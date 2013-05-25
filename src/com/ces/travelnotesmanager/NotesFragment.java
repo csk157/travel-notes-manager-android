@@ -67,10 +67,10 @@ public class NotesFragment extends Fragment implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.createNote:
-			Intent intent = new Intent(getActivity(), CreateNoteActivity.class);
-			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			getActivity().startActivityForResult(intent, 1);
-			return true;
+Intent intent = new Intent(getActivity(), CreateNoteActivity.class);
+intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+getActivity().startActivityForResult(intent, 1);
+return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
